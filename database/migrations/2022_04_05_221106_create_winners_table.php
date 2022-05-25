@@ -19,6 +19,7 @@ class CreateWinnersTable extends Migration
             $table->foreignId('prize_id')->constrained();
             $table->boolean('delivered')->default(false);
             $table->timestamp('delivered_at')->nullable();
+            $table->boolean('is_seen')->default(false);
             $table->timestamps();
         });
     }

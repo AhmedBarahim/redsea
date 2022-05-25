@@ -17,7 +17,9 @@ class CreateCustomersTable extends Migration
             $table->id();
             $table->string('name');
             $table->string('phone_number')->unique();
-            $table->boolean('activated')->default(false);
+            $table->string('mac_address')->unique();
+            $table->timestamp('last_time_scanned')->nullable();
+            $table->tinyInteger('no_of_scans')->nullable();
             $table->timestamps();
         });
     }

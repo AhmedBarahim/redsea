@@ -1,0 +1,34 @@
+aliases	/Applications/XAMPP/xamppfiles/htdocs/redsea/config/app.php	/^    | This array of class aliases will be registered when this application$/;"	class	line:185
+ConfettiGenerator	/Applications/XAMPP/xamppfiles/htdocs/redsea/public/js/confetti.js	/^function ConfettiGenerator(params) {$/;"	function	line:1
+ConfettiGenerator.appstate.target	/Applications/XAMPP/xamppfiles/htdocs/redsea/public/js/confetti.js	/^  var appstate = {$/;"	property	line:4
+ConfettiGenerator.appstate.max	/Applications/XAMPP/xamppfiles/htdocs/redsea/public/js/confetti.js	/^    target: 'confetti-holder', \/\/ Id of the canvas$/;"	property	line:5
+ConfettiGenerator.appstate.size	/Applications/XAMPP/xamppfiles/htdocs/redsea/public/js/confetti.js	/^    max: 80, \/\/ Max itens to render$/;"	property	line:6
+ConfettiGenerator.appstate.animate	/Applications/XAMPP/xamppfiles/htdocs/redsea/public/js/confetti.js	/^    size: 1, \/\/ prop size$/;"	property	line:7
+ConfettiGenerator.appstate.respawn	/Applications/XAMPP/xamppfiles/htdocs/redsea/public/js/confetti.js	/^    animate: true, \/\/ Should animate?$/;"	property	line:8
+ConfettiGenerator.appstate.props	/Applications/XAMPP/xamppfiles/htdocs/redsea/public/js/confetti.js	/^    respawn: true, \/\/ Should confettis be respawned when getting out of screen?$/;"	property	line:9
+rand	/Applications/XAMPP/xamppfiles/htdocs/redsea/public/js/confetti.js	/^  function rand(limit, floor) {$/;"	function	line:75
+ConfettiGenerator.rand	/Applications/XAMPP/xamppfiles/htdocs/redsea/public/js/confetti.js	/^  function rand(limit, floor) {$/;"	function	line:75
+selectProp	/Applications/XAMPP/xamppfiles/htdocs/redsea/public/js/confetti.js	/^  function selectProp() {$/;"	function	line:84
+ConfettiGenerator.selectProp	/Applications/XAMPP/xamppfiles/htdocs/redsea/public/js/confetti.js	/^  function selectProp() {$/;"	function	line:84
+particleFactory	/Applications/XAMPP/xamppfiles/htdocs/redsea/public/js/confetti.js	/^  function particleFactory() {$/;"	function	line:95
+ConfettiGenerator.particleFactory.p.prop	/Applications/XAMPP/xamppfiles/htdocs/redsea/public/js/confetti.js	/^    var p = {$/;"	property	line:97
+ConfettiGenerator.particleFactory	/Applications/XAMPP/xamppfiles/htdocs/redsea/public/js/confetti.js	/^  function particleFactory() {$/;"	function	line:95
+particleDraw	/Applications/XAMPP/xamppfiles/htdocs/redsea/public/js/confetti.js	/^  function particleDraw(p) {$/;"	function	line:117
+switch	/Applications/XAMPP/xamppfiles/htdocs/redsea/public/js/confetti.js	/^    switch(p.prop) {$/;"	function	line:127
+ConfettiGenerator.particleDraw	/Applications/XAMPP/xamppfiles/htdocs/redsea/public/js/confetti.js	/^  function particleDraw(p) {$/;"	function	line:117
+ConfettiGenerator	/Applications/XAMPP/xamppfiles/htdocs/redsea/public/js/confetti.js	/^function ConfettiGenerator(params) {$/;"	function	line:1
+size	/Applications/XAMPP/xamppfiles/htdocs/redsea/public/js/confetti.js	/^        var size = p.size || 15;$/;"	variable	line:161
+_clear	/Applications/XAMPP/xamppfiles/htdocs/redsea/public/js/confetti.js	/^  var _clear = function() {$/;"	function	line:178
+requestAnimationFrame	/Applications/XAMPP/xamppfiles/htdocs/redsea/public/js/confetti.js	/^    requestAnimationFrame(function() {$/;"	function	line:182
+_clear	/Applications/XAMPP/xamppfiles/htdocs/redsea/public/js/confetti.js	/^  var _clear = function() {$/;"	function	line:178
+_render	/Applications/XAMPP/xamppfiles/htdocs/redsea/public/js/confetti.js	/^  var _render = function() {$/;"	function	line:192
+draw	/Applications/XAMPP/xamppfiles/htdocs/redsea/public/js/confetti.js	/^      function draw(){$/;"	function	line:200
+_render.draw	/Applications/XAMPP/xamppfiles/htdocs/redsea/public/js/confetti.js	/^      function draw(){$/;"	function	line:200
+update	/Applications/XAMPP/xamppfiles/htdocs/redsea/public/js/confetti.js	/^      function update() {$/;"	function	line:211
+_render.update	/Applications/XAMPP/xamppfiles/htdocs/redsea/public/js/confetti.js	/^      function update() {$/;"	function	line:211
+_render	/Applications/XAMPP/xamppfiles/htdocs/redsea/public/js/confetti.js	/^  var _render = function() {$/;"	function	line:192
+body	/Applications/XAMPP/xamppfiles/htdocs/redsea/public/css/app.css	/^body {$/;"	function	line:2
+/* .underline	/Applications/XAMPP/xamppfiles/htdocs/redsea/public/css/app.css	/^\/* .underline {$/;"	function	line:7
+#footer .social-links	/Applications/XAMPP/xamppfiles/htdocs/redsea/public/css/app.css	/^#footer .social-links {$/;"	function	line:15
+#footer .social-links a	/Applications/XAMPP/xamppfiles/htdocs/redsea/public/css/app.css	/^#footer .social-links a {$/;"	function	line:19
+#footer .social-links a:hover	/Applications/XAMPP/xamppfiles/htdocs/redsea/public/css/app.css	/^#footer .social-links a:hover {$/;"	function	line:35

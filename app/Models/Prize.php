@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Prize extends Model
 {
+    // use SoftDeletes;
+
     use HasFactory;
     // protected $table="prizes";
 
@@ -14,6 +16,6 @@ class Prize extends Model
         return $this->belongsTo(PrizeType::class);
     }
     public function winners() {
-        return  $this->hasOne(Winner::class);
+        return  $this->hasMany(Winner::class);
     }
 }

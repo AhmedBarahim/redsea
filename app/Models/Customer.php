@@ -7,9 +7,16 @@ use Illuminate\Database\Eloquent\Model;
 
 class Customer extends Model
 {
+    protected $fillable = [
+        'name',
+        'phone_number',
+        'mac_address'
+    ];
+
     use HasFactory;
 
-    public function winners() {
-        return  $this->hasOne(Winner::class);
+    public function winners()
+    {
+        return  $this->hasMany(Winner::class);
     }
 }

@@ -1,3 +1,7 @@
+@font-face {
+    font-family: "Cairo";
+    src: url(../fonts/Cairo-Regular.ttf);
+}
 /* General Style */
 body {
     font-family: "Cairo", sans-serif;
@@ -33,6 +37,6 @@ body {
 }
 
 #footer .social-links a:hover {
-  background: #fff;
-  color: blue;
+  background: red;
+  color: #fff;
 }

@@ -57,6 +57,10 @@ html {
 article, aside, figcaption, figure, footer, header, hgroup, main, nav, section {
   display: block;
 }
+@font-face {
+    font-family: "Cairo";
+    src: url(../../fonts/Cairo-Regular.ttf);
+}
 
 body {
   margin: 0;
@@ -4619,13 +4623,13 @@ input[type="button"].btn-block {
 
 .page-item:first-child .page-link {
   margin-left: 0;
-  border-top-left-radius: 0.35rem;
-  border-bottom-left-radius: 0.35rem;
+  /* border-top-left-radius: 0.35rem;
+  border-bottom-left-radius: 0.35rem; */
 }
 
 .page-item:last-child .page-link {
-  border-top-right-radius: 0.35rem;
-  border-bottom-right-radius: 0.35rem;
+  /* border-top-right-radius: 0.35rem;
+  border-bottom-right-radius: 0.35rem; */
 }
 
 .page-item.active .page-link {
@@ -4678,7 +4682,7 @@ input[type="button"].btn-block {
 .badge {
   display: inline-block;
   padding: 0.25em 0.4em;
-  font-size: 75%;
+  font-size: 100%;
   font-weight: 700;
   line-height: 1;
   text-align: center;
@@ -9912,6 +9916,12 @@ a:focus {
   font-family: 'Font Awesome 5 Free';
 }
 
+/* .nav-item  button, button:focus{
+    outline: none;
+    background: transparent;
+    border: 1px solid transparent;
+    color: #d1d3e2;
+} */
 .sidebar .nav-item.dropdown.show .dropdown-toggle::after,
 .topbar .nav-item.dropdown.show .dropdown-toggle::after {
   content: '\f107';
@@ -9922,14 +9932,60 @@ a:focus {
   position: relative;
 }
 
-.sidebar .nav-item .nav-link .badge-counter,
-.topbar .nav-item .nav-link .badge-counter {
+.sidebar .nav-item .nav-link .badge-counter   ,
+.topbar .nav-item .nav-link .badge-counter  {
+    content: attr(data-count);
+
   position: absolute;
   transform: scale(0.7);
   transform-origin: top right;
   right: .25rem;
   margin-top: -.25rem;
 }
+.badge-counters:after {
+    display: inline;
+    background-color: red;
+    color: white;
+    top: 1.43rem;
+    content: attr(data-count);
+    position: absolute;
+    transform: scale(0.7);
+    transform-origin: top right;
+    right: 0.9rem;
+    margin-top: -0.25rem;
+    padding: 0.25em 0.4em;
+    font-size: 100%;
+    font-weight: 700;
+    line-height: 1;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: baseline;
+    border-radius: 0.35rem;
+    transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+/* {
+    position: absolute;
+    content: attr(data-count);
+    position: absolute;
+  transform: scale(0.7);
+  transform-origin: top right;
+  right: .25rem;
+  margin-top: -.25rem; */
+    /* margin-left: -6.8775px;
+    margin-top: -6.8775px;
+    padding: 0 4px;
+    min-width: 13.755px;
+    height: 13.755px;
+    line-height: 13.755px;
+    background: red;
+    border-radius: 10px;
+    color: #fff;
+    text-align: center;
+    vertical-align: middle;
+    font-size: 11.004px;
+    font-weight: 600;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif */
+/* } */
 
 .sidebar .nav-item .nav-link .img-profile,
 .topbar .nav-item .nav-link .img-profile {
@@ -10057,6 +10113,8 @@ a:focus {
     width: auto;
     right: -26px;
   }
+
+
   .topbar .dropdown-list {
     width: 20rem !important;
   }
@@ -10107,9 +10165,15 @@ a:focus {
 
 .sidebar .nav-item .collapse {
   position: absolute;
-  left: calc(6.5rem + 1.5rem / 2);
+  right: calc(6.5rem + 1.5rem / 2);
   z-index: 1;
   top: 2px;
+}
+@media (min-width: 768px) {
+    .sidebar .nav-item .collapse {
+
+        right: 0;
+      }
 }
 
 .sidebar .nav-item .collapse .collapse-inner {
@@ -10300,7 +10364,7 @@ a:focus {
   }
   .sidebar.toggled .nav-item .collapse {
     position: absolute;
-    left: calc(6.5rem + 1.5rem / 2);
+    right: calc(6.5rem + 1.5rem / 2);
     z-index: 1;
     top: 2px;
     -webkit-animation-name: growIn;
@@ -11005,4 +11069,34 @@ footer.sticky-footer .copyright {
 
 body.sidebar-toggled footer.sticky-footer {
   width: 100%;
+}
+
+.notification-icon:after {
+    position: absolute;
+    content: attr(data-count);
+    margin-left: -6.8775px;
+    margin-top: -6.8775px;
+    padding: 0 4px;
+    min-width: 13.755px;
+    height: 13.755px;
+    line-height: 13.755px;
+    background: red;
+    border-radius: 10px;
+    color: #fff;
+    text-align: center;
+    vertical-align: middle;
+    font-size: 11.004px;
+    font-weight: 600;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif
+}
+.card-border {
+    color: #000;
+    border-left: none;
+    border-right-width: 7px;
+    border-right-style: solid;
+    border-image: linear-gradient(
+      to bottom,
+      red,
+      blue
+    ) 1 100%;
 }

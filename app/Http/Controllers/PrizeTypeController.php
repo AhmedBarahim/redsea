@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\PrizeType;
-use App\Models\Ptype;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class PrizeTypeController extends Controller
 {
@@ -15,7 +15,7 @@ class PrizeTypeController extends Controller
      */
     public function index()
     {
-        return view('prize-types.index',['prizeTypes' => PrizeType::all()]);
+        return view('prize-types.index',['prizeTypes' => PrizeType::where('active',true)->get()]);
     }
 
     /**
@@ -38,7 +38,7 @@ class PrizeTypeController extends Controller
     {
         PrizeType::create(['name' => $request->name]);
         $request->session()->flash('status', 'لقد تم إضافة الجائزة !');
-        return redirect()->route('prize-types.index',['prizeTypes' => PrizeType::all()]);
+        return redirect()->route('prize-types.index');
 
      }
 
@@ -78,7 +78,7 @@ class PrizeTypeController extends Controller
         $prize_type->name = $request->name;
         $prize_type->save();
         $request->session()->flash('status', 'لقد تم تعديل الجائزة !');
-       return redirect()->route('prize-types.index',['prizeTypes' => PrizeType::all()]);
+       return redirect()->route('prize-types.index');
     }
 
     /**
@@ -90,8 +90,11 @@ class PrizeTypeController extends Controller
     public function destroy($id)
     {
        $prize_type = PrizeType::findOrFail($id);
-       $prize_type->delete();
+       $prize_type->name = $prize_type->name . ' (تم الحذف)';
+       $prize_type->active = false;
+       $prize_type->save();
+       DB::table('prizes')->where('prize_type_id',$prize_type->id)->where('redeemed', false)->delete();
        session()->flash('status', 'تم حذف نوع الجائزة');
-       return redirect()->route('prize-types.index',['prizeTypes' => PrizeType::all()]);
+       return redirect()->route('prize-types.index');
     }
 }

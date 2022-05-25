@@ -8,13 +8,23 @@
             </div>
         @endif
         <div class="row">
-            <div class="col-9">
+            <div class="col-8">
                 <h1 class="h3 mb-4 text-gray-800">الجوائز</h1>
             </div>
-            <div class="col-3">
-                <a href="{{ route('prizes.create') }}" class="btn btn-outline-primary float-left"><span
-                        class="d-none d-md-inline">إضافة جوائز</span> <span class="mx-1"><i
-                            class="fas fa-plus"></i></span></a>
+            <div class="col-4">
+                <div class="row">
+                    <div class="col-6">
+                        <a href="{{ route('prizes.create') }}" class="btn btn-outline-primary float-left"><span
+                            class="d-none d-md-inline">إضافة جوائز</span> <span class="mx-1"><i
+                                class="fas fa-plus"></i></span></a>
+                    </div>
+                    <div class="col-6">
+                        <a href="{{ route('prizes.delete') }}" class="btn btn-outline-danger float-left"><span
+                            class="d-none d-md-inline">حذف جوائز</span> <span class="mx-1"><i
+                                class="fas fa-trash"></i></span></a>
+                    </div>
+                </div>
+
             </div>
         </div>
 
@@ -36,11 +46,13 @@
         <!-- Tab panes -->
         <div class="tab-content">
             <div id="home" class="container tab-pane active m-2">
-                <table class="table table-hover bg-white">
+                <table id="example" class="table table-hover bg-white">
                     <thead>
                         <tr>
+                            <th>م</th>
                             <th>رقم الجائزة</th>
                             <th class="w-50">الجائزة</th>
+                            <th>وقت أخذ الجائزة</th>
                             <th>تم أخذها</th>
                             {{-- <th>العمليات</th> --}}
                         </tr>
@@ -48,23 +60,11 @@
                     <tbody>
                         @foreach ($prizes as $prize)
                             <tr>
+                                <td>{{ $loop->iteration }}</td>
                                 <td>{{ $prize->prize_no }}</td>
                                 <td>{{ $prize->prizeType->name }}</td>
+                                <td style="direction: ltr; text-align:right;">{{ $prize->redeemed_at ?? 'لا يوجد' }}</td>
                                 <td>{{ $prize->redeemed == 0 ? 'لا' : 'نعم' }}</td>
-                                {{-- <td>
-                                    <div class="d-inline">
-                                        <a href="#" class="btn btn-outline-warning mx-1"><span
-                                                class="d-none d-md-inline">تعديل</span> <span class="mx-1"><i
-                                                    class="fas fa-edit"></i></span></a>
-                                        <form class="d-inline" action="" method="POST">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="submit" class="btn btn-outline-danger mx-1"><span
-                                                    class="d-none d-md-inline">حذف</span> <span class="mx-1"><i
-                                                        class="fas fa-trash"></i></span></button>
-                                        </form>
-                                    </div>
-                                </td> --}}
                             </tr>
                         @endforeach
 
@@ -76,22 +76,29 @@
             @foreach ($prizeTypes as $count => $prize_type)
                 <div @if ($count == -1) class="tab-pane container active m-2 " @else class="tab-pane container m-2 fade" @endif
                     id="tab-{{ $prize_type->id }}">
-                    <table class="table table-hover bg-white">
+                    <table class="table table-hover bg-white" id="example">
                         <thead>
                             <tr>
+                                <th>م</th>
                                 <th>رقم الجائزة</th>
                                 <th class="w-50">الجائزة</th>
+                                <th>وقت أخذ الجائزة</th>
                                 <th>تم أخذها</th>
                                 {{-- <th>العمليات</th> --}}
                             </tr>
                         </thead>
                         <tbody>
+                            @php
+                            $i=1;
+                        @endphp
                             @foreach ($prizes as $prize)
                                 @if ($prize->prizeType->id == $prize_type->id)
                                     <tr>
+                                        <td>{{ $i++}}</td>
                                         <td>{{ $prize->prize_no }}</td>
                                         <td>{{ $prize->prizeType->name }}</td>
-                                        <td>{{ $prize->redeemed }}</t --}}
+                                        <td style="direction: ltr; text-align:right;">{{ $prize->redeemed_at ?? 'لا يوجد' }}</td>
+                                        <td>{{ $prize->redeemed == 0 ? 'لا' : 'نعم' }}</td>
                                     </tr>
                                 @endif
                             @endforeach

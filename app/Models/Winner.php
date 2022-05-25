@@ -9,10 +9,10 @@ class Winner extends Model
 {
     use HasFactory;
 
-    public function customers() {
+    public function customer() {
         return $this->belongsTo(Customer::class);
     }
-    public function prizes() {
+    public function prize() {
         return $this->belongsTo(Prize::class);
     }
 }
