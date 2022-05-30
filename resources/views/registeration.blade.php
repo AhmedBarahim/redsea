@@ -1,9 +1,8 @@
 @extends('layout')
 
 @section('content')
-<div class="container text-center">
      @if ($errors->any())
-            <div class="mb-3">
+            <div class="mb-3 text-center">
                 <ul class="list-group">
                     @foreach ($errors->all() as $error)
                         <li class="list-group-item list-group-item-danger">{{ $error }}</li>
@@ -22,7 +21,7 @@
     </ul>
 
     <!-- Tab panes -->
-    <div class="tab-content pb-3">
+    <div class="tab-content pb-3 text-center">
       <div id="register" class="container tab-pane active">
         <form action="registeration" method="POST" enctype="multipart/form-data">
             @csrf
@@ -36,6 +35,10 @@
                     name="phone_number" required>
                 <label for="phone_number">رقم الجوال</label>
             </div>
+            <input name="platform_name" type="hidden" value="{{ $platform_name }}">
+            <input name="device_family" type="hidden" value="{{ $device_family }}">
+            <input name="device_model" type="hidden" value="{{ $device_model }}">
+
             <button type="submit" class="btn btn-primary">تسجيل</button>
         </form>
       </div>

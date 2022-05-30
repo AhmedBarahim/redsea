@@ -11,6 +11,8 @@
                 <th>الاسم</th>
                 <th>رقم الجوال</th>
                 <th>Mac Address</th>
+                <th>نظام الجهاز</th>
+                <th>موديل الجهاز</th>
                 <th>اخر عملية فحص</th>
                 <th>عدد عمليات الفحص</th>
               </tr>
@@ -22,6 +24,8 @@
                   <td>{{ $customer->name }}</td>
                   <td>{{ $customer->phone_number }}</td>
                   <td style="direction: ltr; text-align:right;">{{ $customer->mac_address }}</td>
+                  <td style="direction: ltr; text-align:right;">{{ $customer->platform_name }}</td>
+                  <td style="direction: ltr; text-align:right;">{{ $customer->device_family  . " " . $customer->device_model }}</td>
                   <td style="direction: ltr; text-align:right;">{{ $customer->last_time_scanned ?? 'لا يوجد' }}</td>
                   <td>{{ $customer->no_of_scans ?? 'لا يوجد' }}</td>
               </tr>

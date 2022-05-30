@@ -10,7 +10,11 @@ class Customer extends Model
     protected $fillable = [
         'name',
         'phone_number',
-        'mac_address'
+        'mac_address',
+        'platform_name',
+        'device_family',
+        'device_model'
+
     ];
 
     use HasFactory;

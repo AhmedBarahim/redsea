@@ -9,8 +9,8 @@
 
     <title>لوحة التحكم | مهرجان التسوق رد سي مول ٢٠٢٢</title>
     <!-- Custom fonts for this template-->
-    <script src="{{ asset('js/font-awesome5.js') }}"></script>
-    {{-- <link href="{{ asset('css/all.min.css') }}" rel="stylesheet" type="text/css"> --}}
+    {{-- <script src="{{ asset('js/fs.js') }}"></script> --}}
+    <link href="{{ asset('css/fs.css') }}" rel="stylesheet" type="text/css">
 
     {{-- <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>

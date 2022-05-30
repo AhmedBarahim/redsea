@@ -46,11 +46,11 @@ Route::group(['middleware' => 'auth', 'prefix' => 'admin'],function () {
 
 Route::get('win', [WinConrtoller::class, 'index'])->name('win')->middleware('customer');
 Route::get('test', function () {
-    event(new App\Events\NewWinner('Someone'));
-    Notification::send(User::all(), new NewWinnerNotification());
+    // event(new App\Events\NewWinner('Someone'));
+    // Notification::send(User::all(), new NewWinnerNotification());
 
 
-    return "Event has been sent!";
+    // return "Event has been sent!";
 });
 
 

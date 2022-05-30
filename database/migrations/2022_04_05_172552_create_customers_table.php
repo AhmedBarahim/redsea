@@ -18,6 +18,9 @@ class CreateCustomersTable extends Migration
             $table->string('name');
             $table->string('phone_number')->unique();
             $table->string('mac_address')->unique();
+            $table->string('platform_name');
+            $table->string('device_family');
+            $table->string('device_model');
             $table->timestamp('last_time_scanned')->nullable();
             $table->tinyInteger('no_of_scans')->nullable();
             $table->timestamps();

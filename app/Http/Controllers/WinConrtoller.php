@@ -3,19 +3,19 @@
 namespace App\Http\Controllers;
 
 use App\Events\NewWinner;
+use App\Helpers\MacAddress as HelpersMacAddress;
 use App\Models\Customer;
 use App\Models\Prize;
 use App\Models\Winner;
 
 use DateTime;
-
+use MacAddress;
 
 class WinConrtoller extends Controller
 {
     public function index()
     {
-        $ip =  $_SERVER['REMOTE_ADDR'];
-        $mac_address = trim(shell_exec("arp -n " . $ip . "| cut -f 4 -d ' ' "));
+        $mac_address = MacAddress::get();
         $customer = Customer::where('mac_address', $mac_address)->first();
         $date = $customer->last_time_scanned ?? '1997-01-23 00:00:00';
         $date = new DateTime($date);
