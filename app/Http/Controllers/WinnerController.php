@@ -19,7 +19,7 @@ class WinnerController extends Controller
             $winner->is_seen = true;
             $winner->save();
         }
-       return view('winners.index',['winners' =>  Winner::join('prizes','prizes.id','=','prize_id')->where('prize_type_id','!=',1)->select('winners.*')->orderBy('delivered','desc')->orderBy('delivered_at',
+       return view('winners.index',['winners' =>  Winner::join('prizes','prizes.id','=','prize_id')->where('prize_type_status',true)->select('winners.*')->orderBy('delivered','desc')->orderBy('delivered_at',
        'desc')->get()]);
     }
     public function newWinners()
@@ -29,9 +29,16 @@ class WinnerController extends Controller
             $winner->is_seen = true;
             $winner->save();
         }
-       return view('winners.new-winners',['winners' =>  Winner::join('prizes','prizes.id','=','prize_id')->where('prize_type_id','!=',1)->where('delivered',false)->select('winners.*')->orderBy('created_at',
+       return view('winners.new-winners',['winners' =>  Winner::join('prizes','prizes.id','=','prize_id')->where('prize_type_status',true)->where('delivered',false)->select('winners.*')->orderBy('created_at',
        'desc')->get()]);
     }
+
+    public function winnersNotification()
+   {
+       # code...
+       $winners = Winner::where('is_seen' , false)->count();
+       return response()->json($winners, 200);
+   }
     /**
      * Show the form for creating a new resource.
      *

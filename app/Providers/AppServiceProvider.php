@@ -34,6 +34,6 @@ class AppServiceProvider extends ServiceProvider
             }
         }
 
-        View::share('new_winners_count', Winner::join('prizes','prizes.id','=','prize_id')->where('prize_type_id','!=',1)->where('is_seen',false)->where('prizes.redeemed',true)->select('winners.*')->count());
+        View::share('new_winners_count', Winner::join('prizes','prizes.id','=','prize_id')->where('prize_type_status',true)->where('is_seen',false)->where('prizes.redeemed',true)->select('winners.*')->count());
     }
 }

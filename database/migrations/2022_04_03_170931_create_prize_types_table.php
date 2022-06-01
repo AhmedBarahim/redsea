@@ -16,6 +16,7 @@ class CreatePrizeTypesTable extends Migration
         Schema::create('prize_types', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->boolean('status')->default(true);
             $table->boolean('active')->default(true);
             $table->timestamps();
 

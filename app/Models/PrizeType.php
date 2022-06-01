@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class PrizeType extends Model
 {
     // protected $table="prize_types";
-    protected $fillable = ['name'];
+    protected $fillable = ['name','status'];
     use HasFactory;
 
     public function prizes() {

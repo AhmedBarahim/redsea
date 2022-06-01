@@ -16,6 +16,7 @@ class CreatePrizesTable extends Migration
         Schema::create('prizes', function (Blueprint $table) {
             $table->id();
             $table->foreignId('prize_type_id')->constrained()->onDelete('cascade');
+            $table->boolean('prize_type_status');
             $table->integer('prize_no')->unique();
             $table->boolean('redeemed')->default(false);
             $table->timestamp('redeemed_at')->nullable();

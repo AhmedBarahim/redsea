@@ -15,7 +15,7 @@
                         <h5 class="text-danger"> لا يمكنك الفحص الآن .. حاول بعد</h5>
                         <h5>{{ $time_remaining ?? '' }}</h5>
                     @elseif (isset($prize))
-                        @if ($prize->prizeType->id == 1)
+                        @if (!$prize->prizeType->status)
                             <script src="{{ asset('js/lottie-player.js') }}"></script>
                             <lottie-player src="{{ asset('js/happy-face.json') }}"
                                 class="mx-auto mb-2" background="transparent" speed="1"

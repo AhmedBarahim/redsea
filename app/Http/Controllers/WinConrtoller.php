@@ -17,6 +17,9 @@ class WinConrtoller extends Controller
     {
         $mac_address = MacAddress::get();
         $customer = Customer::where('mac_address', $mac_address)->first();
+        if(!isset($customer)) {
+            return redirect()->route('registeration');
+        }
         $date = $customer->last_time_scanned ?? '1997-01-23 00:00:00';
         $date = new DateTime($date);
         $date_after = date_add($date, date_interval_create_from_date_string('10 seconds'));
@@ -42,7 +45,7 @@ class WinConrtoller extends Controller
                 $winner->customer_id = $customer->id;
                 $winner->prize_id = $prize->id;
                 $winner->save();
-                if($winner->prize->prize_type_id != 1) {
+                if($winner->prize->prize_type_status) {
                     event(new NewWinner('Someone'));
                 }
 

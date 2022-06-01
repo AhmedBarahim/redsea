@@ -46,6 +46,8 @@
 
                     <!-- Topbar Navbar -->
                     <ul class="navbar-nav mr-auto">
+                        <audio src="{{ asset('notification.mp3') }}" id="notification-sound" style="display: none;"
+                            controls></audio>
 
                         <!-- Nav Item - Alerts -->
                         <li class="nav-item notifications">
@@ -57,6 +59,16 @@
 
                             </a>
                         </li>
+                        {{-- <li class="nav-item notifications">
+                            <a class="nav-link" href="{{ route('new-winners') }}">
+                                <i class="fas fa-bell fa-fw fa-2x"></i> --}}
+                                <!-- Counter - Alerts -->
+                                <span class="badge badge-danger badge-counter" style="right: 0.8rem;" id="count"></span>
+                                {{-- <span data-count="{{ $new_winners_count }}" class="badge-counters"></span> --}}
+
+                            {{-- </a>
+                        </li> --}}
+
 
                         <div class="topbar-divider d-none d-sm-block"></div>
 
@@ -70,7 +82,7 @@
                             -webkit-background-clip: text;
                             -webkit-text-fill-color: transparent;
                           "></i>
-                           <span class="mr-2 text-gray-600 d-none d-sm-inline">{{ Auth::user()->username; }}</span>
+                            <span class="mr-2 text-gray-600 d-none d-sm-inline">{{ Auth::user()->username }}</span>
                         </div>
                         {{-- <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
@@ -167,7 +179,7 @@
                     <div class="container text-center d-inline">
                         <form action="{{ route('logout') }}" method="POST">
                             @csrf
-                        <button class="btn btn-secondary mx-2" type="button" data-dismiss="modal">إلغاء</button>
+                            <button class="btn btn-secondary mx-2" type="button" data-dismiss="modal">إلغاء</button>
                             <button type="submit" class="btn btn-danger mx-2">خروج</button>
                         </form>
                     </div>
@@ -215,24 +227,65 @@
 
         // Bind a function to a Event (the full Laravel class)
         channel.bind('App\\Events\\NewWinner', function(data) {
+            // function playSound(callback) {
+            //     document.getElementById("notification-sound").play();
+            //     // call the callback function
+            //     callback();
+            // }
 
+            // function alertWinner() {
+            //     alert('هناك فائز جديد');
+            // }
+
+            var count = notificationsCount;
+            // playSound(alertWinner);
+            document.getElementById("notification-sound").play();
             notificationsCount += 1;
             notificationsCountElem.attr('data-count', notificationsCount);
             notificationsCountElem.show();
+            // if(count != notificationsCount ) {
+            //     alert('هناك فائز جديد');
+            // }
         });
     </script>
 
-<script>
-    $(document).ready(function() {
-        $('#example').DataTable({
-            "lengthMenu": [ 50, 75, 100 ],
-            language: {
-            url: 'https://cdn.datatables.net/plug-ins/1.11.5/i18n/ar.json',
+    <script>
+        $(document).ready(function() {
+            $('#example').DataTable({
+                "lengthMenu": [50, 75, 100],
+                language: {
+                    url: 'https://cdn.datatables.net/plug-ins/1.11.5/i18n/ar.json',
 
-        }
+                }
+            });
         });
-    });
-</script>
+        $(document).ready(function() {
+            $("#getData").click(function() {
+                $.ajax({ //create an ajax request to display.php
+                    type: "GET",
+                    url: "get-blog-list/",
+                    success: function(data) {
+                        $("#title").html(data.title);
+                        $("#description").html(data.description);
+                    }
+                });
+            });
+        });
+
+        // $(document).ready(function() {
+        //     setInterval(function() {
+        //         $.ajax({
+        //             type: "GET",
+        //             url: "admin/winnersNotification",
+        //             success: function(data) {
+        //                 $("#count").html(data);
+
+        //                 //do something with response data
+        //             }
+        //         });
+        //     }, 1000); //time in milliseconds
+        // });
+    </script>
 </body>
 
 </html>

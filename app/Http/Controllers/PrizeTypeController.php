@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Prize;
 use App\Models\PrizeType;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -36,7 +37,13 @@ class PrizeTypeController extends Controller
      */
     public function store(Request $request)
     {
-        PrizeType::create(['name' => $request->name]);
+        $validated = $request->validate([
+            'name' => 'string | required',
+            'status' => 'unique:App\Models\PrizeType,status',
+        ]);
+
+        // dd($request->all());
+        PrizeType::create(['name' => $request->name,'status' => !$request->boolean('status')]);
         $request->session()->flash('status', 'لقد تم إضافة الجائزة !');
         return redirect()->route('prize-types.index');
 
@@ -74,11 +81,39 @@ class PrizeTypeController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $validated = $request->validate([
+            'name' => 'string | required',
+        ]);
         $prize_type = PrizeType::findOrFail($id);
         $prize_type->name = $request->name;
-        $prize_type->save();
-        $request->session()->flash('status', 'لقد تم تعديل الجائزة !');
-       return redirect()->route('prize-types.index');
+        if($prize_type->isDirty() || $prize_type->status == $request->boolean('status')){
+            $validated = $request->validate([
+                'status' => 'unique:App\Models\PrizeType,status',
+            ]);
+            // dd($request->boolean('status'));
+            $prizes = Prize::where('prize_type_id' , $id)->get();
+            $prize_type->status = !$request->boolean('status');
+            foreach($prizes as $prize) {
+                $prize->prize_type_status = !$request->boolean('status');
+                $prize->save();
+            }
+            // if($request->boolean('status')) {
+            //     $prize_type->status = !$request->boolean('status');
+            // }
+            // else {
+            //     $prize_type->status = $request->boolean('status');
+            // }
+            $prize_type->save();
+            $request->session()->flash('status', 'لقد تم تعديل الجائزة !');
+            return redirect()->route('prize-types.index');
+        }
+        else {
+            $request->session()->flash('status1', 'لم تقم بأي تعديل');
+            return redirect()->route('prize-types.index');
+        }
+    //     $prize_type->save();
+    //     $request->session()->flash('status', 'لقد تم تعديل الجائزة !');
+    //    return redirect()->route('prize-types.index');
     }
 
     /**

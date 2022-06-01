@@ -39,6 +39,8 @@ Route::group(['middleware' => 'auth', 'prefix' => 'admin'],function () {
         'index', 'show'
     ]);
     Route::get('new-winners', [WinnerController::class, 'newWinners'])->name('new-winners');
+    Route::get('winnersNotification', [WinnerController::class, 'winnersNotification']);
+
     Route::resource('winners', WinnerController::class)->only([
         'index', 'show' ,'update'
     ]);

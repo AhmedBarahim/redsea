@@ -16,14 +16,14 @@ class DashboardController extends Controller
     }
     public function index() {
         $customers_count = Customer::count();
-        $winners_count = Winner::join('prizes','prizes.id','=','prize_id')->where('prize_type_id','!=',1)->distinct('customer_id')->count('customer_id');
+        $winners_count = Winner::join('prizes','prizes.id','=','prize_id')->where('prize_type_status',true)->distinct('customer_id')->count('customer_id');
         $prize_types_count = PrizeType::count();
-        $prizes_count = Winner::join('prizes','prizes.id','=','prize_id')->where('prize_type_id','!=',1)->count();
+        $prizes_count = Winner::join('prizes','prizes.id','=','prize_id')->where('prize_type_status',true)->count();
         $all_prizes = Prize::count();
         $all_prizes_taken = Prize::where('redeemed',true)->count();
         $prizes = PrizeType::all();
         $prizes_details =Prize::select('prize_type_id', DB::raw('COUNT(*) as total , sum(case when redeemed = true then 1 else 0 end) AS totals'))->groupBy('prize_type_id')->get();
-        $prizes_delivered =  Winner::join('prizes','prizes.id','=','prize_id')->where('prize_type_id','!=',1)->where('delivered',false)->count();
+        $prizes_delivered =  Winner::join('prizes','prizes.id','=','prize_id')->where('prize_type_status',true)->where('delivered',false)->count();
         return view('dashboard.home', [
             'customers_count' => $customers_count,
             'winners_count' => $winners_count,
