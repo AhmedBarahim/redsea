@@ -16,6 +16,9 @@
 
 
     <title>مهرجان التسوق | ريد سي مول</title>
+
+    @stack('choices-css')
+
   </head>
 
   <body>
@@ -106,6 +109,8 @@
     </footer>
     <!-- Option 1: Bootstrap Bundle with Popper -->
     <script src="{{ asset('js/bootstrap.bundle.min.js') }}"></script>
+    @stack('socket.io')
+    @stack('choices-js')
 
 
   </body>

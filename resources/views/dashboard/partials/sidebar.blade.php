@@ -69,6 +69,42 @@
         <!-- Divider -->
         <hr class="sidebar-divider">
 
+                <!-- Heading -->
+                <div class="sidebar-heading">
+                    مسابقة السحب
+                </div>
+
+                <li class="nav-item {{ (request()->is('admin/stores*')) ? 'active' : '' }}">
+                    <a class="nav-link" href="{{ route('stores.index') }}">
+                        <i class="fas fa-store"></i>
+                        <span class="m-md-1">المحلات</span>
+                    </a>
+                </li>
+
+                <li class="nav-item {{ (request()->is('admin/customers*')) ? 'active' : ''}}">
+                    <a class="nav-link" href="{{ route('customers.index') }}">
+                        <i class="fas fa-spinner"></i>
+                        <span class="m-md-1">سحب فائز</span>
+                    </a>
+                </li>
+
+                 <li class="nav-item {{ (request()->is('admin/drawers*')) ? 'active' : ''}}">
+                    <a class="nav-link" href="{{ route('drawers') }}">
+                        <i class="fas fa-gifts"></i>
+                        <span class="m-md-1">المشاركون بالسحب</span>
+                    </a>
+                </li>
+
+                <li class="nav-item {{ (request()->is('admin/customers*')) ? 'active' : ''}}">
+                    <a class="nav-link" href="{{ route('customers.index') }}">
+                        <i class="fas fa-users"></i>
+                        <span class="m-md-1">الفائزون</span>
+                    </a>
+                </li>
+
+                <!-- Divider -->
+                <hr class="sidebar-divider">
+
         <li class="nav-item">
             <a class="nav-link" href="#" data-toggle="modal" data-target="#logoutModal">
                 <i class="fas fa-sign-out-alt"></i>

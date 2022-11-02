@@ -45,9 +45,9 @@ class WinConrtoller extends Controller
                 $winner->customer_id = $customer->id;
                 $winner->prize_id = $prize->id;
                 $winner->save();
-                if($winner->prize->prize_type_status) {
-                    event(new NewWinner('Someone'));
-                }
+                // if($winner->prize->prize_type_status) {
+                //     event(new NewWinner('Someone'));
+                // }
 
 
             }

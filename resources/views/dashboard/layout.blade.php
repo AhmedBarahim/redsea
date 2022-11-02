@@ -62,11 +62,11 @@
                         {{-- <li class="nav-item notifications">
                             <a class="nav-link" href="{{ route('new-winners') }}">
                                 <i class="fas fa-bell fa-fw fa-2x"></i> --}}
-                                <!-- Counter - Alerts -->
-                                <span class="badge badge-danger badge-counter" style="right: 0.8rem;" id="count"></span>
-                                {{-- <span data-count="{{ $new_winners_count }}" class="badge-counters"></span> --}}
+                        <!-- Counter - Alerts -->
+                        <span class="badge badge-danger badge-counter" style="right: 0.8rem;" id="count"></span>
+                        {{-- <span data-count="{{ $new_winners_count }}" class="badge-counters"></span> --}}
 
-                            {{-- </a>
+                        {{-- </a>
                         </li> --}}
 
 
@@ -74,7 +74,8 @@
 
                         <!-- Nav Item - User Information -->
                         <div class="nav-item align-self-center">
-                            <i class="fas fa-user-alt" style="display: inline-block;
+                            <i class="fas fa-user-alt"
+                                style="display: inline-block;
                             border-radius: 60px;
                             box-shadow: 0 0 2px #888;
                             padding: 0.5em 0.6em;
@@ -202,7 +203,7 @@
     <script src="{{ asset('dashboard/js/dataTables.bootstrap4.min.js') }}"></script>
 
 
-    <script src="{{ asset('dashboard/js/pusher.min.js') }}"></script>
+    {{-- <script src="{{ asset('dashboard/js/pusher.min.js') }}"></script>
 
     <script type="text/javascript">
         var notificationsWrapper = $('.notifications');
@@ -247,7 +248,7 @@
             //     alert('هناك فائز جديد');
             // }
         });
-    </script>
+    </script> --}}
 
     <script>
         $(document).ready(function() {
@@ -259,18 +260,18 @@
                 }
             });
         });
-        $(document).ready(function() {
-            $("#getData").click(function() {
-                $.ajax({ //create an ajax request to display.php
-                    type: "GET",
-                    url: "get-blog-list/",
-                    success: function(data) {
-                        $("#title").html(data.title);
-                        $("#description").html(data.description);
-                    }
-                });
-            });
-        });
+        // $(document).ready(function() {
+        //     $("#getData").click(function() {
+        //         $.ajax({ //create an ajax request to display.php
+        //             type: "GET",
+        //             url: "get-blog-list/",
+        //             success: function(data) {
+        //                 $("#title").html(data.title);
+        //                 $("#description").html(data.description);
+        //             }
+        //         });
+        //     });
+        // });
 
         // $(document).ready(function() {
         //     setInterval(function() {
@@ -286,6 +287,36 @@
         //     }, 1000); //time in milliseconds
         // });
     </script>
+
+    <script src="{{ asset('js/socket.io.min.js') }}"></script>
+    <script>
+        var notificationsWrapper = $('.notifications');
+        //   var notificationsToggle    = notificationsWrapper.find('a[data-toggle]');
+        var notificationsCountElem = notificationsWrapper.find('span[data-count]');
+        var notificationsCount = parseInt(notificationsCountElem.data('count'));
+        //   var notifications          = notificationsWrapper.find('ul.dropdown-menu');
+
+        if (notificationsCount <= 0) {
+            notificationsCountElem.hide();
+        }
+        $(function() {
+            let ip_address = '192.168.8.121';
+            let socket_port = '3000';
+            let socket = io(ip_address + ':' + socket_port);
+            socket.on("baccc")
+            socket.on('receivingNotification', (message) => {
+
+                var count = notificationsCount;
+                // playSound(alertWinner);
+                document.getElementById("notification-sound").play();
+                notificationsCount += 1;
+                notificationsCountElem.attr('data-count', notificationsCount);
+                notificationsCountElem.show();
+                // alert("rere");
+            });
+        });
+    </script>
+
 </body>
 
 </html>

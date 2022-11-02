@@ -17,22 +17,52 @@
                     @elseif (isset($prize))
                         @if (!$prize->prizeType->status)
                             <script src="{{ asset('js/lottie-player.js') }}"></script>
-                            <lottie-player src="{{ asset('js/happy-face.json') }}"
-                                class="mx-auto mb-2" background="transparent" speed="1"
-                                style="width: 150px; height: 150px;" loop autoplay></lottie-player>
+                            <lottie-player src="{{ asset('js/happy-face.json') }}" class="mx-auto mb-2"
+                                background="transparent" speed="1" style="width: 150px; height: 150px;" loop autoplay>
+                            </lottie-player>
                             <h4 class="text-danger">{{ $prize->prizeType->name }}</h4>
                             <h5 class="text-danger">حاول مرة اخرى</h5>
                             <p>{{ $prize->id }}</p>
                         @else
-                        <script src="{{ asset('js/lottie-player.js') }}"></script>
-                        <lottie-player src="{{ asset('js/sad-face.json') }}"
-                        class="mx-auto mb-2" background="transparent" speed="1"
-                                style="width: 150px; height: 150px;" loop autoplay></lottie-player>
-                            <h2 class="text-success fw-bold">مبروووك لقد ربحت</h2>
+                            <script src="{{ asset('js/lottie-player.js') }}"></script>
+                            <lottie-player src="{{ asset('js/sad-face.json') }}" class="mx-auto mb-2"
+                                background="transparent" speed="1" style="width: 150px; height: 150px;" loop autoplay>
+                            </lottie-player>
+                            <h2 id="winner" class="text-success fw-bold">مبروووك لقد ربحت</h2>
                             <h4 class="text-success">{{ $prize->prizeType->name }}</h4>
                             <p>{{ $prize->id }}</p>
                             <script src="{{ asset('js/confetti-js/dist/index.min.js') }}"></script>
                             <script src="{{ asset('js/index.min.js') }}"></script>
+                            @push('socket.io')
+                                <script src="{{ asset('js/socket.io.min.js') }}"></script>
+                                <script src=" {{ asset('dashboard/vendor/jquery/jquery.min.js') }}"></script>
+                                <script src="{{ asset('dashboard/vendor/jquery-easing/jquery.easing.min.js') }}"></script>
+
+                                <script>
+                                    $(function() {
+                                        let ip_address = '192.168.8.121';
+                                        let socket_port = '3000';
+                                        let socket = io(ip_address + ':' + socket_port);
+                                        socket.on("connection")
+                                        socket.emit('sendNotification' , 'It is working');
+
+                                        // alert("hello");
+                                        // let chatInput = $('#chatInput');
+                                        // chatInput.keypress(function(e) {
+                                        //     let message = $(this).html();
+                                        //     console.log(message);
+                                        //     if (e.which === 13 && !e.shiftKey) {
+                                        //         socket.emit('sendChatToServer', message);
+                                        //         chatInput.html('');
+                                        //         return false;
+                                        //     }
+                                        // });
+                                        // socket.on('sendChatToClient', (message) => {
+                                        //     $('.chat-content ul').append(`<li>${message}</li>`);
+                                        // });
+                                    });
+                                </script>
+                            @endpush
 
                             <script>
                                 window.addEventListener('resize', function() {
