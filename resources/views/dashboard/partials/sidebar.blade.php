@@ -81,8 +81,8 @@
                     </a>
                 </li>
 
-                <li class="nav-item {{ (request()->is('admin/customers*')) ? 'active' : ''}}">
-                    <a class="nav-link" href="{{ route('customers.index') }}">
+                <li class="nav-item {{ (request()->is('admin/pick-winner*')) ? 'active' : ''}}">
+                    <a class="nav-link" href="{{ route('showPickWinner') }}">
                         <i class="fas fa-spinner"></i>
                         <span class="m-md-1">سحب فائز</span>
                     </a>
@@ -95,8 +95,8 @@
                     </a>
                 </li>
 
-                <li class="nav-item {{ (request()->is('admin/customers*')) ? 'active' : ''}}">
-                    <a class="nav-link" href="{{ route('customers.index') }}">
+                <li class="nav-item {{ (request()->is('admin/winning-drawers*')) ? 'active' : ''}}">
+                    <a class="nav-link" href="{{ route('winning-drawers') }}">
                         <i class="fas fa-users"></i>
                         <span class="m-md-1">الفائزون</span>
                     </a>

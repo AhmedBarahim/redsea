@@ -51,7 +51,11 @@ Route::group(['middleware' => 'auth', 'prefix' => 'admin'],function () {
     ]);
     Route::resource('stores', StoreController::class)->except('show');
     Route::get('drawers' , [DrawController::class, 'showDrawers'])->name('drawers');
-
+    Route::get('pick-winner' , [DrawController::class, 'showPickWinner'])->name('showPickWinner');
+    Route::post('pick-winner' , [DrawController::class, 'postPickWinner'])->name('postPickWinner');
+    Route::post('accept-winner' , [DrawController::class, 'acceptPickWinner'])->name('acceptPickWinner');
+    Route::post('reject-winner' , [DrawController::class, 'rejectPickWinner'])->name('rejectPickWinner');
+    Route::get('winning-drawers' , [DrawController::class, 'showWinners'])->name('winning-drawers');
 
 });
 

@@ -22,6 +22,12 @@
             </div>
         @endif
 
+        <div class="row">
+            <div class="col">
+              <h3 class="text-center fw-bold">دخول السحب</h3>
+            </div>
+          </div>
+
         <form action="{{ route('enterDraw') }}" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="form-floating mb-3 mt-3">
@@ -35,7 +41,7 @@
                 <label for="phone_number">رقم الجوال</label>
             </div>
             <div class="form-floating">
-                <select class="selectpicker form-select" id="store" name="store_id">
+                <select class="selectpicker form-select" id="store" name="store_id" required>
                     <option selected disabled>اختر اسم المحل</option>
                     @foreach ($stores as $store)
                         <option value="{{ $store->id }}">{{ $store->name }}</option>
@@ -56,7 +62,7 @@
             <div class="mb-3 mt-3">
                 <label for="formFileLg" class="form-label">صورة الفاتورة</label>
                 <input class="form-control form-control-lg" id="formFileLg" name="bill_img" type="file"
-                    accept="image/*">
+                    accept="image/*" required>
             </div>
             <div class="text-center">
                 <button type="submit" class="btn btn-primary">دخول السحب</button>

@@ -53,10 +53,42 @@ class DrawController extends Controller
     }
 
     public function showDrawers() {
-        return view('drawers', ['drawers' => Drawer::all()]);
+        return view('drawers', ['drawers' => Drawer::where('winner',false)->where('active',true)->get()]);
     }
 
-    private function checkIfTheDataIsVaild($store_id , $bill_id) {
+    public function showPickWinner() {
+        $noOfDrawers = Drawer::where('winner',false)->where('active',true)->count();
+        return view('pick-winner',['noOfDrawers' => $noOfDrawers]);
+    }
 
+    public function postPickWinner() {
+        $winner = Drawer::inRandomOrder()->where('winner', false)->where('active',true)->first();
+        if(!isset($winner)) {
+            session()->flash('status', 'لا يوجد مشاركون بالسحب');
+            return redirect()->route('showPickWinner');
+        }
+        else {
+        $winner->winner = true;
+        $winner->save();
+        session()->flash('win', $winner);
+        return view('pick-winner',['winner' => $winner]);
+
+        }
+    }
+    public function acceptPickWinner() {
+        session()->forget('win');
+        return redirect()->route('showPickWinner');
+    }
+    public function rejectPickWinner(Request $requset) {
+        $fakeWinner = Drawer::findOrFail($requset->id);
+        $fakeWinner->winner = false;
+        $fakeWinner->active = false;
+        $fakeWinner->save();
+        session()->flash('status', 'تم رفض الفائز');
+        return redirect()->route('showPickWinner');
+    }
+
+    public function showWinners() {
+        return view('winning-drawers', ['winners' => Drawer::where('winner',true)->where('active',true)->get()]);
     }
 }

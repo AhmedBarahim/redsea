@@ -4,7 +4,7 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col">
-                <h1 class="h3 mb-4 text-gray-800">المشاركون بالسحب</h1>
+                <h1 class="h3 mb-4 text-gray-800">الفائزون بالسحب</h1>
             </div>
         </div>
 
@@ -24,14 +24,14 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($drawers as $drawer)
+                        @foreach ($winners as $winner)
                             <tr>
                                 <td>{{ $loop->iteration }}</td>
-                                <td>{{ $drawer->name }}</td>
-                                <td>{{ $drawer->phone_number }}</td>
-                                <td>{{ $drawer->store->name }}</td>
-                                <td>{{ $drawer->bill_no }}</td>
-                                <td>{{ $drawer->bill_price }}</td>
+                                <td>{{ $winner->name }}</td>
+                                <td>{{ $winner->phone_number }}</td>
+                                <td>{{ $winner->store->name }}</td>
+                                <td>{{ $winner->bill_no }}</td>
+                                <td>{{ $winner->bill_price }}</td>
                                 <td>
                                     <!-- Button to Open the Modal -->
                                     <button type="button" class="btn btn-primary" data-toggle="modal"
@@ -40,7 +40,7 @@
                                     </button>
 
                                 </td>
-                                <td style="direction: ltr; text-align:right;">{{ $drawer->created_at }}</td>
+                                <td style="direction: ltr; text-align:right;">{{ $winner->created_at }}</td>
                             </tr>
                             <!-- The Modal -->
                             <div class="modal fade" id="modal-{{ $loop->iteration }}">
@@ -49,14 +49,14 @@
 
                                         <!-- Modal Header -->
                                         <div class="modal-header">
-                                            <h4 class="modal-title"><span class="font-weight-bolder">اسم المحل :</span> {{ $drawer->store->name }} - <span class="font-weight-bolder">رقم الفاتورة :</span> {{ $drawer->bill_no }} - <span class="font-weight-bolder">ملبغ الفاتورة : </span> {{ $drawer->bill_price  }}</h4>
+                                            <h4 class="modal-title"><span class="font-weight-bolder">اسم المحل :</span> {{ $winner->store->name }} - <span class="font-weight-bolder">رقم الفاتورة :</span> {{ $winner->bill_no }} - <span class="font-weight-bolder">ملبغ الفاتورة : </span> {{ $winner->bill_price  }}</h4>
                                             <button type="button" class="close m-0 p-0"
                                                 data-dismiss="modal">&times;</button>
                                         </div>
 
                                         <!-- Modal body -->
                                         <div class="modal-body text-center">
-                                            <img src="{{ Storage::url($drawer->bill_img) }}" class="img-fluid">
+                                            <img src="{{ Storage::url($winner->bill_img) }}" class="img-fluid">
                                         </div>
 
                                         <!-- Modal footer -->
