@@ -19,7 +19,7 @@ class DrawController extends Controller
             'phone_number' => 'required | numeric | digits:9' ,
             'store_id' => 'required | numeric' ,
             'bill_no' => 'required | numeric' ,
-            'bill_price' => 'required | numeric' ,
+            'bill_price' => 'required | numeric | gte:10000' ,
             'bill_img' => 'required | image',
         ]);
         $query = Drawer::where('store_id',$request->store_id)->where('bill_no',$request->bill_no)->count();
@@ -32,7 +32,7 @@ class DrawController extends Controller
             $store_name = Store::findOrFail($request->store_id)->value('name');
             if ($request->hasFile('bill_img')) {
                 // $path = $request->file('bill_img')->store('/uploads/invoices');
-                $path = $request->file('bill_img')->storeAs('/public/invoices',$request->name . '_' . $store_name . '.' . $request->file('bill_img')->extension());
+                $path = $request->file('bill_img')->storeAs('/public/invoices',$request->name . '_' . $store_name . '_' . $request->bill_no . '.' . $request->file('bill_img')->extension());
             }
             Drawer::create([
                 'name' => $request->name,

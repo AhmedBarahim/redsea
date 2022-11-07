@@ -111,6 +111,8 @@
     <script src="{{ asset('js/bootstrap.bundle.min.js') }}"></script>
     @stack('socket.io')
     @stack('choices-js')
+    @stack('compress-image')
+
 
 
   </body>

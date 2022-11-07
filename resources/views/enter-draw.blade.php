@@ -5,6 +5,9 @@
 @push('choices-js')
     <script src="{{ asset('js/choices.min.js') }}"></script>
 @endpush
+@push('compress-image')
+    <script src="{{ asset('js/compress-image.js') }}"></script>
+@endpush
 @section('content')
 @if (session('status'))
         <div class="alert alert-danger alert-dismissible fade show pr-2 text-center">
@@ -61,8 +64,12 @@
             </div>
             <div class="mb-3 mt-3">
                 <label for="formFileLg" class="form-label">صورة الفاتورة</label>
-                <input class="form-control form-control-lg" id="formFileLg" name="bill_img" type="file"
+                <input class="form-control form-control-lg" id="inputImage" name="bill_img" type="file"
                     accept="image/*" required>
+
+                    {{-- <div id="wrapper">
+
+                    </div> --}}
             </div>
             <div class="text-center">
                 <button type="submit" class="btn btn-primary">دخول السحب</button>
