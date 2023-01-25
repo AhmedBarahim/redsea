@@ -20,6 +20,7 @@ class DrawController extends Controller
             'store_id' => 'required | numeric' ,
             'bill_no' => 'required | numeric' ,
             'bill_price' => 'required | numeric | gte:10000' ,
+            'bill_no' => 'required | numeric | unique:drawers,coupon_no' ,
             'bill_img' => 'required | image',
         ]);
         $query = Drawer::where('store_id',$request->store_id)->where('bill_no',$request->bill_no)->count();
@@ -40,6 +41,7 @@ class DrawController extends Controller
                 'store_id' => $request->store_id,
                 'bill_no' => $request->bill_no,
                 'bill_price' => $request->bill_price,
+                'coupon_no' => $request->coupon_no,
                 'bill_img' => $path,
             ]);
             session()->flash('status', 'تم دخولك على السحب بنجاح');

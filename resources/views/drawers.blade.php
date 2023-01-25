@@ -9,7 +9,7 @@
         </div>
 
         <div class="tab-content">
-            <div id="home" class="tab-pane active m-2">
+            <div id="home" class="tab-pane table-responsive active m-2">
                 <table id="example" class="table table-hover bg-white">
                     <thead>
                         <tr>
@@ -19,6 +19,7 @@
                             <th>اسم المحل</th>
                             <th>رقم الفاتورة</th>
                             <th>مبلغ الفاتورة</th>
+                            <th>رقم الكوبون</th>
                             <th>صورة الفاتورة</th>
                             <th>تاريخ دخول السحب</th>
                         </tr>
@@ -32,6 +33,7 @@
                                 <td>{{ $drawer->store->name }}</td>
                                 <td>{{ $drawer->bill_no }}</td>
                                 <td>{{ $drawer->bill_price }}</td>
+                                <td>{{ $drawer->coupon_no }}</td>
                                 <td>
                                     <!-- Button to Open the Modal -->
                                     <button type="button" class="btn btn-primary" data-toggle="modal"
@@ -49,7 +51,11 @@
 
                                         <!-- Modal Header -->
                                         <div class="modal-header">
-                                            <h4 class="modal-title"><span class="font-weight-bolder">اسم المحل :</span> {{ $drawer->store->name }} - <span class="font-weight-bolder">رقم الفاتورة :</span> {{ $drawer->bill_no }} - <span class="font-weight-bolder">ملبغ الفاتورة : </span> {{ $drawer->bill_price  }}</h4>
+                                            <h4 class="modal-title"><span class="font-weight-bolder">اسم المحل :</span> {{ $drawer->store->name }}
+                                                 - <span class="font-weight-bolder">رقم الفاتورة :</span> {{ $drawer->bill_no }}
+                                                 - <span class="font-weight-bolder">ملبغ الفاتورة : </span> {{ $drawer->bill_price  }}
+                                                 - <span class="font-weight-bolder">رقم الكوبون :</span> {{ $drawer->coupon_no }}
+                                                </h4>
                                             <button type="button" class="close m-0 p-0"
                                                 data-dismiss="modal">&times;</button>
                                         </div>

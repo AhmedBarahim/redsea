@@ -19,6 +19,7 @@
                             <th>اسم المحل</th>
                             <th>رقم الفاتورة</th>
                             <th>مبلغ الفاتورة</th>
+                            <th>رقم الكوبون</th>
                             <th>صورة الفاتورة</th>
                             <th>تاريخ دخول السحب</th>
                         </tr>
@@ -32,6 +33,7 @@
                                 <td>{{ $winner->store->name }}</td>
                                 <td>{{ $winner->bill_no }}</td>
                                 <td>{{ $winner->bill_price }}</td>
+                                <td>{{ $winner->coupon_no }}</td>
                                 <td>
                                     <!-- Button to Open the Modal -->
                                     <button type="button" class="btn btn-primary" data-toggle="modal"

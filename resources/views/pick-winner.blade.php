@@ -27,6 +27,7 @@
         <h4 class="pt-2"><span class="pl-2 font-weight-bold">اسم المحل:</span>{{ $winner->store->name  }}</h4>
         <h4 class="pt-2"><span class="pl-2 font-weight-bold">رقم الفاتورة:</span>{{ $winner->bill_no }}</h4>
         <h4 class="pt-2"><span class="pl-2 font-weight-bold">مبلغ الفاتورة:</span>{{ $winner->bill_price }}</h4>
+        <h4 class="pt-2"><span class="pl-2 font-weight-bold">رقم الكوبون:</span>{{ $winner->coupon_no }}</h4>
         <h4 class="pt-2"><span class="pl-2 font-weight-bold">صورة الفاتورة:</span> <button type="button" class="btn btn-primary" data-toggle="modal"
             data-target="#modal">
             عرض صورة الفاتورة
@@ -39,7 +40,12 @@
 
                     <!-- Modal Header -->
                     <div class="modal-header">
-                        <h4 class="modal-title"><span class="font-weight-bolder">اسم المحل :</span> {{ $winner->store->name }} - <span class="font-weight-bolder">رقم الفاتورة :</span> {{ $winner->bill_no }} - <span class="font-weight-bolder">ملبغ الفاتورة : </span> {{ $winner->bill_price  }}</h4>
+                        <h4 class="modal-title">
+                            <span class="font-weight-bolder">اسم المحل :</span> {{ $winner->store->name }} -
+                            <span class="font-weight-bolder">رقم الفاتورة :</span> {{ $winner->bill_no }} -
+                            <span class="font-weight-bolder">ملبغ الفاتورة : </span> {{ $winner->bill_price  }} -
+                            <span class="font-weight-bolder">رقم الكوبون :</span> {{ $winner->coupon_no }}
+                        </h4>
                         <button type="button" class="close m-0 p-0"
                             data-dismiss="modal">&times;</button>
                     </div>

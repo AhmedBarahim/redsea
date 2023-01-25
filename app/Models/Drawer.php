@@ -13,6 +13,7 @@ class Drawer extends Model
         'store_id',
         'bill_no',
         'bill_price',
+        'coupon_no',
         'bill_img',
         'active',
         'winner'
